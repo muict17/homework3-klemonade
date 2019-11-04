@@ -10,26 +10,55 @@ int main()
     {
         scanf("%d",&a[i]);
     }
-    for (i=0;i<n-1;i++)
+    if (a[0]>a[n-1])
     {
-        df[i]=a[i+1]-a[i];
-    }
-    int rdif=df[0];
-    for (i=0;i<n-2;i++)
-    {
-        if (rdif > df[i])
+        for (i=0;i<n-1;i++)
         {
-            rdif = df[i];
+            df[i]=a[i]-a[i+1];
+        }
+        int rdif=df[0];
+        for (i=0;i<n-1;i++)
+        {
+            if (rdif > df[i])
+            {
+                rdif = df[i];
+            }
+        }
+        for (i=0;i<n-1;i++)
+        {
+            if (a[i]-a[i+1]!=rdif)
+            {
+                for (j=1;j<a[i]-a[i+1]/rdif;j++)
+                {
+                    printf("%d ",a[i]-j*rdif);
+                }
+            }
         }
     }
-    for (i=0;i<n-1;i++)
+    else 
     {
-        if (a[i+1]-a[i]!=rdif)
+        for (i=0;i<n-1;i++)
         {
-            for (j=1;j<a[i+1]-a[i]/rdif;j++)
+            df[i]=a[i+1]-a[i];
+        }
+        int rdif=df[0];
+        for (i=0;i<n-1;i++)
+        {
+            if (rdif > df[i])
             {
-                printf("%d ",a[i]+j*rdif);
+                rdif = df[i];
+            }
+        }
+        for (i=0;i<n-1;i++)
+        {
+            if (a[i+1]-a[i]!=rdif)
+            {
+                for (j=1;j<a[i+1]-a[i]/rdif;j++)
+                {
+                    printf("%d ",a[i]+j*rdif);
+                }
             }
         }
     }
 }
+    
